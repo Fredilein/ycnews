@@ -76,13 +76,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="stylus">
+
+@import '../assets/App.styl'
+
 .news-item
-  background-color #fff
   position relative
   padding-left 80px
   linehight 20px
+  border-color #888
   .score
-    color #ff6600
+    color accent
     font-size 1.1em
     position absolute
     top 50%
@@ -92,9 +95,7 @@ export default {
     margin-top -10px
   .title
     a
-      color #000
       text-decoration none
   .meta
-    color #828282
     font-size .85em
 </style>

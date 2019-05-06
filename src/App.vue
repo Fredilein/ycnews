@@ -1,27 +1,59 @@
 <template>
-  <div id="app" class="container">
-    <Articles />
+  <div :class="store.state.theme">
+    <div id="app" class="app container">
+      <h1><a v-on:click="store.toggleTheme()"><i class="fab fa-hacker-news-square"></i></a></h1>
+      <Articles />
+      <span class="footer">Made with <i class="far fa-keyboard fa-lg"></i> by <a href="https://github.com/Fredilein" target="_blank">Adi</a></span>
+    </div>
   </div>
 </template>
 
 <script>
 import Articles from './components/Articles.vue'
+import store from './store.js'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      store: store
+    }
+  },
   components: {
     Articles
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
-  max-width: 800px;
-}
+<style lang="stylus">
+
+@import './assets/App.styl'
+
+.app 
+  font-family 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  padding-top 60px
+  padding-bottom 20px
+  max-width 800px
+
+h1
+  text-align center
+  margin-bottom 30px
+  color accent
+
+.footer
+  font-size 0.8em
+  display block
+  margin-top 30px
+  margin-bottom 30px
+  text-align center
+  
+  .far
+    margin 8px
+
+  a
+    text-decoration none
+    
+
 </style>

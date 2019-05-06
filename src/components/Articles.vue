@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1><i class="fab fa-hacker-news"></i></h1>
-
     <section v-if="errored">
       <p>Couldn't load articles...</p>
     </section>
@@ -49,10 +47,10 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="stylus" scoped>
-h1
-  text-align center
-  margin-bottom 30px
+<style lang="stylus">
+
+@import '../assets/App.styl'
+
 .listgroup
   padding 0
 </style>
