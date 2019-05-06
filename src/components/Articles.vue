@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Articles</h1>
+    <h1><i class="fab fa-hacker-news"></i></h1>
 
     <section v-if="errored">
       <p>Couldn't load articles...</p>
@@ -27,7 +27,7 @@ export default {
   },
   data () {
     return {
-      ids: null,
+      ids:     null,
       loading: true,
       errored: false
     }
@@ -37,7 +37,7 @@ export default {
     axios
       .get('https://hacker-news.firebaseio.com/v0/topstories.json')
       .then(res => {
-        this.ids = res.data.slice(0, 40);
+        this.ids = res.data.slice(0, 30);
       })
       .catch(err => {
         console.log(err)
@@ -49,5 +49,10 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="stylus" scoped>
+h1
+  text-align center
+  margin-bottom 30px
+.listgroup
+  padding 0
 </style>
