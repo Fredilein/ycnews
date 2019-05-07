@@ -6,7 +6,12 @@
     </span>
     <br>
     <span class="meta">
-      {{ time | timeAgo }} ago | {{ url | host }}
+      <div v-if="url">
+        {{ time | timeAgo }} ago | {{ url | host }}
+      </div>
+      <div v-else>
+        {{ time | timeAgo }} ago
+      </div>
     </span>
   </li>
 </template>

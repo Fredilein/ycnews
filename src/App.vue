@@ -21,7 +21,14 @@ export default {
   },
   components: {
     Articles
+  },
+  mounted () {
+    // Toggle theme (to dark) at night
+    let d =  new Date();
+    let h = d.getHours();
+    if (h < 7 || h > 15) store.toggleTheme();
   }
+
 }
 </script>
 
@@ -55,5 +62,4 @@ h1
   a
     text-decoration none
     
-
 </style>
