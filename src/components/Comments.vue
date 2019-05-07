@@ -17,6 +17,11 @@
       </ul>
     </section>
 
+
+    <span class="footer">
+      <a :href="ycUrl" target="_blank">Open on ycombinator</a>
+    </span>
+
   </div>
 </template>
 
@@ -36,10 +41,12 @@ export default {
       title: "",
       ids: null,
       loading: true,
-      errored: false
+      errored: false,
+      ycUrl: ""
     }
   },
   mounted () {
+    this.ycUrl = 'https://news.ycombinator.com/item?id=' + this.$route.params.Aid;
     axios
       .get('https://hacker-news.firebaseio.com/v0/item/' + this.$route.params.Aid +'.json')
       .then(res => {

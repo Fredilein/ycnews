@@ -36,7 +36,7 @@ export default {
     axios
       .get('https://hacker-news.firebaseio.com/v0/topstories.json')
       .then(res => {
-        this.ids = res.data.slice(0, 5);
+        this.ids = res.data.slice(0, 30);
       })
       .catch(err => {
         console.log(err)
