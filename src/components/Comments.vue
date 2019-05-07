@@ -3,7 +3,7 @@
 
     <router-link to="/" class="h1 back"><i class="fas fa-chevron-left fa-xs"></i></router-link>
 
-    <h5 class="title">{{ title }}</h5>
+    <h5 class="ctitle">{{ title }}</h5>
 
     <section v-if="errored">
       <p>Couldn't load comments</p>
@@ -63,7 +63,7 @@ export default {
 
 @import '../assets/App.styl'
 
-.title
+.ctitle
   padding .75rem 1.25rem
   text-align center
 

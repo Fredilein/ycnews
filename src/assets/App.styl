@@ -5,12 +5,14 @@ text-light       = #2C3E50
 text-light-hover = #111
 border-light     = #EAEAEA
 meta-light       = #828282
+meta-light-hover = #675543
 
 bg-dark          = #222
 text-dark        = #D3C1AF
 text-dark-hover  = #EEE
 border-dark      = #333
 meta-dark        = #7D7D7D
+meta-dark-hover  = #98AABC
 
 .light
   background-color bg-light
@@ -20,7 +22,7 @@ meta-dark        = #7D7D7D
     &:hover
       color text-light-hover
 
-  .title
+  .ctitle
     color text-light
 
   .news-item
@@ -33,6 +35,10 @@ meta-dark        = #7D7D7D
           color text-light-hover
     .meta
       color meta-light
+      a
+        color meta-light
+        &:hover
+          color meta-light-hover
 
   .footer
     color text-light
@@ -46,6 +52,11 @@ meta-dark        = #7D7D7D
     border-color border-light
     .text
       color text-light
+      a
+        text-decoration none
+        color text-light
+        &:hover
+          color text-light-hover
     .meta
       color meta-light
 
@@ -57,7 +68,7 @@ meta-dark        = #7D7D7D
     &:hover
       color text-dark-hover
   
-  .title
+  .ctitle
     color text-dark
 
   .news-item
@@ -70,6 +81,10 @@ meta-dark        = #7D7D7D
           color text-dark-hover
     .meta
       color meta-dark
+      a
+        color meta-dark
+        &:hover
+          color meta-dark-hover
 
   .footer
     color text-dark
@@ -83,5 +98,10 @@ meta-dark        = #7D7D7D
     border-color border-dark
     .text
       color text-dark
+      a
+        text-decoration none
+        color text-dark
+        &:hover
+          color text-dark-hover
     .meta
       color meta-dark

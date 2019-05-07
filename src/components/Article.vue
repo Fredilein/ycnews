@@ -7,8 +7,12 @@
     <br>
     <span class="meta">
       <div v-if="url">
-        {{ time | timeAgo }} ago | {{ url | host }} | 
-        <a v-on:click="goToComments(id)" href="#">{{ ncomments }} comments</a>
+        <div v-if="ncomments > 0">
+          {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a v-on:click="goToComments(id)" href="#">{{ ncomments }} <i class="far fa-comments fa-sm"></i></a>
+        </div>
+        <div v-else>
+          {{ time | timeAgo }} ago | <i>{{ url | host }}</i>
+        </div>
       </div>
       <div v-else>
         {{ time | timeAgo }} ago
@@ -22,34 +26,7 @@
 <script>
 import axios from 'axios';
 import Vue from 'vue';
-
-Vue.filter('host', function (url) {
-  const url_trim = url
-    ? url
-      .split('/')
-      .slice(1, 3)
-      .join('')
-    : '';
-  return url_trim;
-})
-
-Vue.filter('timeAgo', function (time) {
-  const between = Date.now() / 1000 - Number(time)
-  if (between < 3600) {
-    return pluralize(~~(between / 60), ' minute')
-  } else if (between < 86400) {
-    return pluralize(~~(between / 3600), ' hour')
-  } else {
-    return pluralize(~~(between / 86400), ' day')
-  }
-})
-
-function pluralize (time, label) {
-  if (time === 1) {
-    return time + label
-  }
-  return time + label + 's'
-}
+import {host, timeAgo} from '../util/filters.js';
 
 export default {
   name: 'Article',
@@ -117,5 +94,7 @@ export default {
 
   .meta
     font-size .85em
+    a
+      text-decoration none
 
 </style>
