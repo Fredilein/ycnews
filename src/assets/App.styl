@@ -1,21 +1,29 @@
-accent = #F60
-text-light = #2C3E50
+accent           = #F60
+
+bg-light         = #FAFAFA
+text-light       = #2C3E50
 text-light-hover = #111
-text-dark = #D3C1AF
-text-dark-hover = #EEE
+border-light     = #EAEAEA
+meta-light       = #828282
+
+bg-dark          = #222
+text-dark        = #D3C1AF
+text-dark-hover  = #EEE
+border-dark      = #333
+meta-dark        = #7D7D7D
 
 .light
-  background-color #FAFAFA
+  background-color bg-light
   .news-item
-    background-color #FAFAFA
-    border-color #EAEAEA
+    background-color bg-light
+    border-color border-light
     .title
       a
         color text-light
         &:hover
           color text-light-hover
     .meta
-      color #828282
+      color meta-light
   .footer
     color text-light
     a
@@ -24,17 +32,17 @@ text-dark-hover = #EEE
         color text-light-hover
 
 .dark
-  background-color #222
+  background-color bg-dark
   .news-item
-    background-color #222
-    border-color #333
+    background-color bg-dark
+    border-color border-dark
     .title
       a
         color text-dark
         &:hover
           color text-dark-hover
     .meta
-      color #7D7D7D
+      color meta-dark
   .footer
     color text-dark
     a

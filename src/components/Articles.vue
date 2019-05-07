@@ -14,6 +14,8 @@
   </div>
 </template>
 
+
+
 <script>
 import axios from 'axios';
 import Article from './Article.vue';
@@ -31,7 +33,6 @@ export default {
     }
   },
   mounted () {
-    // TODO: Make (aka copy) own API
     axios
       .get('https://hacker-news.firebaseio.com/v0/topstories.json')
       .then(res => {
@@ -46,11 +47,13 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+
 <style lang="stylus">
 
 @import '../assets/App.styl'
 
 .listgroup
   padding 0
+
 </style>

@@ -16,6 +16,8 @@
   </li>
 </template>
 
+
+
 <script>
 import axios from 'axios';
 import Vue from 'vue';
@@ -79,7 +81,8 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+
 <style lang="stylus">
 
 @import '../assets/App.styl'
@@ -89,6 +92,7 @@ export default {
   padding-left 80px
   linehight 20px
   border-color #888
+
   .score
     color accent
     font-size 1.1em
@@ -98,9 +102,12 @@ export default {
     width 80px
     text-align center
     margin-top -10px
+
   .title
     a
       text-decoration none
+
   .meta
     font-size .85em
+
 </style>

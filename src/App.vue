@@ -1,12 +1,20 @@
 <template>
   <div :class="store.state.theme">
     <div id="app" class="app container">
+
       <h1><a v-on:click="store.toggleTheme()"><i class="fab fa-hacker-news-square"></i></a></h1>
+
       <Articles />
-      <span class="footer">Made with <i class="far fa-keyboard fa-lg"></i> by <a href="https://github.com/Fredilein" target="_blank">Adi</a></span>
+
+      <span class="footer">
+        Made with <i class="far fa-keyboard fa-lg"></i> by <a href="https://github.com/Fredilein" target="_blank">Adi</a>
+      </span>
+
     </div>
   </div>
 </template>
+
+
 
 <script>
 import Articles from './components/Articles.vue'
@@ -26,11 +34,13 @@ export default {
     // Toggle theme (to dark) at night
     let d =  new Date();
     let h = d.getHours();
-    if (h < 7 || h > 15) store.toggleTheme();
+    if (h < 7 || h > 15) store.toggleTheme();   // light theme 7 - 15 UTC, 9 - 17 in Zurich
   }
 
 }
 </script>
+
+
 
 <style lang="stylus">
 
