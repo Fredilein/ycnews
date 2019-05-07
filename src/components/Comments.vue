@@ -1,16 +1,20 @@
 <template>
   <div>
+    <h1>Comments...</h1>
+    <h2>Aid: {{this.$route.params.Aid}}</h2>
+
     <section v-if="errored">
-      <p>Couldn't load articles...</p>
+      <p>Couldn't load comments</p>
     </section>
 
     <section v-else>
       <div v-if="loading">Loading...</div>
 
       <ul v-else class="listgroup list-group-flush">
-        <Article v-for="id in ids" v-bind:id="id" />
+        <Comment v-for="id in ids" v-bind:id="id" />
       </ul>
     </section>
+
   </div>
 </template>
 
@@ -18,25 +22,26 @@
 
 <script>
 import axios from 'axios';
-import Article from './Article.vue';
+import Comment from './Comment.vue';
 
 export default {
-  name: 'Articles',
+  name: 'Comments',
   components: {
-    Article
+    Comment
   },
   data () {
     return {
-      ids:     null,
+      ids: null,
       loading: true,
       errored: false
     }
   },
   mounted () {
     axios
-      .get('https://hacker-news.firebaseio.com/v0/topstories.json')
+      .get('https://hacker-news.firebaseio.com/v0/item/' + this.$route.params.Aid +'.json')
       .then(res => {
-        this.ids = res.data.slice(0, 5);
+        let n = res.data.kids.length
+        this.ids = res.data.kids.slice(0, Math.max(n, 5))
       })
       .catch(err => {
         console.log(err)
@@ -45,6 +50,7 @@ export default {
       .finally(() => this.loading = false)
   }
 }
+
 </script>
 
 
@@ -52,8 +58,5 @@ export default {
 <style lang="stylus">
 
 @import '../assets/App.styl'
-
-.listgroup
-  padding 0
 
 </style>

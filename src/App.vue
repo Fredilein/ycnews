@@ -4,7 +4,8 @@
 
       <h1><a v-on:click="store.toggleTheme()"><i class="fab fa-hacker-news-square"></i></a></h1>
 
-      <Articles />
+      <!-- <Articles /> -->
+      <router-view></router-view>
 
       <span class="footer">
         Made with <i class="far fa-keyboard fa-lg"></i> by <a href="https://github.com/Fredilein" target="_blank">Adi</a>
@@ -18,6 +19,7 @@
 
 <script>
 import Articles from './components/Articles.vue'
+import Comments from './components/Comments.vue'
 import store from './store.js'
 
 export default {
@@ -28,7 +30,8 @@ export default {
     }
   },
   components: {
-    Articles
+    Articles,
+    Comments
   },
   mounted () {
     // Toggle theme (to dark) at night

@@ -7,7 +7,8 @@
     <br>
     <span class="meta">
       <div v-if="url">
-        {{ time | timeAgo }} ago | {{ url | host }}
+        {{ time | timeAgo }} ago | {{ url | host }} | 
+        <a v-on:click="goToComments(id)" href="#">{{ ncomments }} comments</a>
       </div>
       <div v-else>
         {{ time | timeAgo }} ago
@@ -55,15 +56,22 @@ export default {
   props: {
     id: Number
   },
+  methods: {
+    goToComments(id) {
+      this.$router.push({name: 'comments', params: {Aid:id}})
+    }
+  },
   data () {
     return {
       score: 0,
       title: "loading...",
       url:   "",
-      time:  null
+      time:  null,
+      ncomments: 0
     }
   },
   mounted () {
+
     let url = 'https://hacker-news.firebaseio.com/v0/item/' + this.id + '.json';
     axios
       .get(url)
@@ -73,6 +81,7 @@ export default {
         this.title = res.data.title;
         this.url   = res.data.url;
         this.time  = res.data.time;
+        this.ncomments = res.data.kids.length;
       })
       .catch(err => {
         console.log(err)
@@ -91,7 +100,6 @@ export default {
   position relative
   padding-left 80px
   linehight 20px
-  border-color #888
 
   .score
     color accent
