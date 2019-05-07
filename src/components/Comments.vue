@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>Comments...</h1>
-    <h2>Aid: {{this.$route.params.Aid}}</h2>
+
+    <router-link to="/" class="h1 back"><i class="fas fa-chevron-left fa-xs"></i></router-link>
+
+    <h5 class="title">{{ title }}</h5>
 
     <section v-if="errored">
       <p>Couldn't load comments</p>
@@ -31,6 +33,7 @@ export default {
   },
   data () {
     return {
+      title: "",
       ids: null,
       loading: true,
       errored: false
@@ -42,6 +45,7 @@ export default {
       .then(res => {
         let n = res.data.kids.length
         this.ids = res.data.kids.slice(0, Math.max(n, 5))
+        this.title = res.data.title
       })
       .catch(err => {
         console.log(err)
@@ -58,5 +62,15 @@ export default {
 <style lang="stylus">
 
 @import '../assets/App.styl'
+
+.title
+  padding .75rem 1.25rem
+  text-align center
+
+.back
+  padding-left 1.25rem
+  margin-top -0.15rem
+  position absolute
+  top 60px
 
 </style>
