@@ -1,4 +1,4 @@
-export function host (url) {
+export function host(url) {
   const url_trim = url
     ? url
       .split('/')
@@ -8,7 +8,7 @@ export function host (url) {
   return url_trim;
 }
 
-export function timeAgo (time) {
+export function timeAgo(time) {
   const between = Date.now() / 1000 - Number(time)
   if (between < 3600) {
     return pluralize(~~(between / 60), ' minute')
@@ -18,6 +18,7 @@ export function timeAgo (time) {
     return pluralize(~~(between / 86400), ' day')
   }
 }
+
 
 function pluralize (time, label) {
   if (time === 1) {

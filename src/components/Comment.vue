@@ -13,7 +13,6 @@
 
 <script>
 import axios from 'axios';
-import timeAgo from '../util/filters.js';
 
 export default {
   name: 'Comment',

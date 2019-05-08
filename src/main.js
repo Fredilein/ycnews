@@ -2,15 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Routes from './routes.js'
+import {timeAgo, host} from './util/filters.js'
 
 
 Vue.config.productionTip = false
 
-// new Vue({
-//   render: h => h(App),
-// }).$mount('#app')
-
 Vue.use(VueRouter);
+
+Vue.filter('host', host);
+Vue.filter('timeAgo', timeAgo);
 
 const router = new VueRouter({
   mode: 'history',

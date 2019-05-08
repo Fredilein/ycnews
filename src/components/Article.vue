@@ -26,7 +26,6 @@
 <script>
 import axios from 'axios';
 import Vue from 'vue';
-import {host, timeAgo} from '../util/filters.js';
 
 export default {
   name: 'Article',
