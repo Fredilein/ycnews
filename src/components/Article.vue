@@ -8,10 +8,10 @@
     <span class="meta">
       <div v-if="url">
         <div v-if="ncomments > 1">
-          {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a v-on:click="goToComments(id)" href="#">{{ ncomments }} <i class="far fa-comments fa-sm"></i></a>
+          {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a v-on:click="goToComments(id)">{{ ncomments }} <i class="far fa-comments fa-sm"></i></a>
         </div>
         <div v-else-if="ncomments > 0">
-          {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a v-on:click="goToComments(id)" href="#">{{ ncomments }} <i class="far fa-comment fa-sm"></i></a>
+          {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a v-on:click="goToComments(id)">{{ ncomments }} <i class="far fa-comment fa-sm"></i></a>
         </div>
         <div v-else>
           {{ time | timeAgo }} ago | <i>{{ url | host }}</i>
