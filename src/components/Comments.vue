@@ -51,7 +51,7 @@ export default {
       .get('https://hacker-news.firebaseio.com/v0/item/' + this.$route.params.Aid +'.json')
       .then(res => {
         let n = res.data.kids.length
-        this.ids = res.data.kids.slice(0, Math.max(n, 5))
+        this.ids = res.data.kids
         this.title = res.data.title
       })
       .catch(err => {
