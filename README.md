@@ -3,6 +3,14 @@
 A really simple hackernews clone, built with vue js.
 Toggle between light and dark theme by clicking the Y-icon.
 
+
+## Todo
+- [ ] Test on android
+- [ ] Show whole comment thread
+- [ ] Pages
+- [ ] Best / New articles
+
+
 ## Project setup
 ```
 yarn install
