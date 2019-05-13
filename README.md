@@ -5,6 +5,7 @@ Toggle between light and dark theme by clicking the Y-icon.
 
 
 ## Todo
+- [ ] Cache  articles when in comments
 - [ ] Test on android
 - [ ] Show whole comment thread
 - [ ] Pages
