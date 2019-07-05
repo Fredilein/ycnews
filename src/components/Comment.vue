@@ -1,6 +1,5 @@
 <template>
   <li class="list-group-item comment-item">
-    <!-- <span class="text">{{ text }}</span> -->
     <span class="text" v-html="text"></span>
     <br>
     <span class="meta">
@@ -23,8 +22,7 @@ export default {
     return {
       text: "loading...",
       by: "",
-      time:  null,
-      needBr: false
+      time:  null
     }
   },
   mounted () {
