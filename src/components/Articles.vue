@@ -20,6 +20,10 @@
 import axios from 'axios';
 import Article from './Article.vue';
 
+
+const NUM_ARTICLES = 5;
+
+
 export default {
   name: 'Articles',
   components: {
@@ -36,7 +40,7 @@ export default {
     axios
       .get('https://hacker-news.firebaseio.com/v0/topstories.json')
       .then(res => {
-        this.ids = res.data.slice(0, 30);
+        this.ids = res.data.slice(0, NUM_ARTICLES);
       })
       .catch(err => {
         console.log(err)
