@@ -1,11 +1,21 @@
 <template>
-  <li class="list-group-item comment-item">
-    <span class="text" v-html="text"></span>
-    <br>
-    <span class="meta">
-      {{ time | timeAgo }} ago | by <i>{{ by }}</i>
-    </span>
-  </li>
+  <div>
+    <li class="list-group-item comment-item">
+      <span class="text" v-html="text"></span>
+      <br>
+      <span class="meta">
+        {{ time | timeAgo }} ago | by <i>{{ by }}</i>
+      </span>
+    </li>
+
+    <section v-if="kids.length > 0">
+      <li class="list-group-item comment-item">
+        <ul class="listgroup list-group-flush">
+          <Comment v-for="id in kids" v-bind:key="id" />
+        </ul>
+      </li>
+    </section>
+  </div>
 </template>
 
 
@@ -22,7 +32,8 @@ export default {
     return {
       text: "loading...",
       by: "",
-      time:  null
+      time:  null,
+      kids: []
     }
   },
   mounted () {
@@ -35,6 +46,7 @@ export default {
         this.text = res.data.text;
         this.by   = res.data.by;
         this.time  = res.data.time;
+        this.kids = res.data.kids;
       })
       .catch(err => {
         console.log(err)
@@ -59,6 +71,9 @@ export default {
     line-height 1.6
     a
       font-style italic
+
+  .kids
+    border: 5px solid red;
 
 
 </style>
