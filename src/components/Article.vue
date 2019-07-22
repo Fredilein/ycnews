@@ -7,8 +7,11 @@
     <br>
     <span class="meta">
       <div v-if="url">
-        <div v-if="ncomments > 1">
-          {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a class="button" v-on:click="goToComments(id)">{{ ncomments }} <i class="far fa-comments fa-sm"></i></a>
+        <div v-if="!store.state.showComments">
+          {{ time | timeAgo }} ago | <i>{{ url | host }}</i>
+        </div>
+        <div v-else-if="ncomments > 1">
+          {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a v-on:click="goToComments(id)">{{ ncomments }} <i class="far fa-comments fa-sm"></i></a>
         </div>
         <div v-else-if="ncomments > 0">
           {{ time | timeAgo }} ago | <i>{{ url | host }}</i> | <a v-on:click="goToComments(id)">{{ ncomments }} <i class="far fa-comment fa-sm"></i></a>
@@ -29,6 +32,7 @@
 <script>
 import axios from 'axios';
 import Vue from 'vue';
+import store from '../store.js'
 
 export default {
   name: 'Article',
@@ -46,7 +50,8 @@ export default {
       title: "loading...",
       url:   "",
       time:  null,
-      ncomments: 0
+      ncomments: 0,
+      store: store
     }
   },
   mounted () {

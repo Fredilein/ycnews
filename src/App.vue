@@ -8,7 +8,7 @@
       <router-view></router-view>
 
       <span class="footer">
-        Made with <i class="far fa-keyboard fa-lg"></i> by <a href="https://github.com/Fredilein" target="_blank">Adi</a>
+        Made with <a v-on:click="store.toggleComments()"><i class="far fa-keyboard fa-lg"></i></a> by <a href="https://github.com/Fredilein" target="_blank">Adi</a>
       </span>
 
     </div>
