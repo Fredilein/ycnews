@@ -56,7 +56,6 @@ export default {
         this.text = res.data.text;
         this.by   = res.data.by;
         this.time  = res.data.time;
-        console.log("kids: " + res.data.kids);
         if (res.data.kids) {
           this.kids = res.data.kids;
         }
@@ -85,9 +84,5 @@ export default {
     line-height 1.6
     a
       font-style italic
-
-  .kids
-    border-left: 2px solid #F60;
-
 
 </style>

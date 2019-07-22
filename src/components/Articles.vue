@@ -8,7 +8,7 @@
       <div v-if="loading">Loading...</div>
 
       <ul v-else class="listgroup list-group-flush">
-        <Article v-for="id in ids" v-bind:id="id" />
+        <Article v-for="id in ids" v-bind:id="id" v-bind:key="id"/>
       </ul>
     </section>
   </div>
@@ -21,7 +21,7 @@ import axios from 'axios';
 import Article from './Article.vue';
 
 
-const NUM_ARTICLES = 5;
+const NUM_ARTICLES = 30;
 
 
 export default {
