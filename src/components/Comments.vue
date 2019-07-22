@@ -13,7 +13,7 @@
       <div v-if="loading">Loading...</div>
 
       <ul v-else class="listgroup list-group-flush">
-        <Comment v-for="id in ids" v-bind:id="id" />
+        <Comment v-for="id in ids" v-bind:id="id" v-bind:key="id"/>
       </ul>
     </section>
 
@@ -50,12 +50,11 @@ export default {
     axios
       .get('https://hacker-news.firebaseio.com/v0/item/' + this.$route.params.Aid +'.json')
       .then(res => {
-        let n = res.data.kids.length
         this.ids = res.data.kids
         this.title = res.data.title
       })
-      .catch(err => {
-        console.log(err)
+      .catch(_ => {
+        // console.log(err)
         this.errored = true
       })
       .finally(() => this.loading = false)

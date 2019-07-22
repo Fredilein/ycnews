@@ -1,19 +1,28 @@
 <template>
   <div>
-    <li class="list-group-item comment-item">
-      <span class="text" v-html="text"></span>
-      <br>
-      <span class="meta">
-        {{ time | timeAgo }} ago | by <i>{{ by }}</i>
-      </span>
-    </li>
-
-    <section v-if="kids.length > 0">
+    
+    <section v-if="errored">
       <li class="list-group-item comment-item">
-        <ul class="listgroup list-group-flush">
-          <Comment v-for="id in kids" v-bind:key="id" />
-        </ul>
+        <span class="text">Error.</span>
       </li>
+    </section>
+
+    <section v-else>
+      <li class="list-group-item comment-item">
+        <span class="text" v-html="text"></span>
+        <br>
+        <span class="meta">
+          {{ time | timeAgo }} ago | by <i>{{ by }}</i>
+        </span>
+      </li>
+      
+      <section v-if="kids.length > 0">
+        <li class="list-group-item comment-item">
+          <ul class="listgroup list-group-flush kids">
+            <Comment v-for="id in kids" v-bind:id="id" v-bind:key="id" />
+          </ul>
+        </li>
+      </section>
     </section>
   </div>
 </template>
@@ -33,7 +42,8 @@ export default {
       text: "loading...",
       by: "",
       time:  null,
-      kids: []
+      kids: [],
+      errored: false
     }
   },
   mounted () {
@@ -42,14 +52,18 @@ export default {
     axios
       .get(url)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.text = res.data.text;
         this.by   = res.data.by;
         this.time  = res.data.time;
-        this.kids = res.data.kids;
+        console.log("kids: " + res.data.kids);
+        if (res.data.kids) {
+          this.kids = res.data.kids;
+        }
       })
-      .catch(err => {
-        console.log(err)
+      .catch(_ => {
+        // console.log(err)
+        this.errored = true;
       })
   }
 }
@@ -73,7 +87,7 @@ export default {
       font-style italic
 
   .kids
-    border: 5px solid red;
+    border-left: 2px solid #F60;
 
 
 </style>
