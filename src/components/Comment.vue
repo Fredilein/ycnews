@@ -76,6 +76,9 @@ export default {
 
 .comment-item
   position relative
+  padding-right 0
+  padding-top 10px
+  padding-bottom 10px
 
   .meta
     font-size .85em
