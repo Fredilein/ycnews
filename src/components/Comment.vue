@@ -7,13 +7,21 @@
       </li>
     </section>
 
+    <section v-else-if="hidden">
+      <li class="list-group-item comment-item">
+        <span class="meta">
+          <a v-on:click="toggleHideComment()"><i class="far fa-plus-square"></i></a> {{ time | timeAgo }} ago | by <i>{{ by }}</i>
+        </span>
+      </li>
+    </section>
+
     <section v-else>
       <li class="list-group-item comment-item">
-        <span class="text" v-html="text"></span>
-        <br>
         <span class="meta">
-          {{ time | timeAgo }} ago | by <i>{{ by }}</i>
+          <a v-on:click="toggleHideComment()"><i class="far fa-minus-square"></i></a> {{ time | timeAgo }} ago | by <i>{{ by }}</i>
         </span>
+        <br>
+        <span class="text" v-html="text"></span>
       </li>
       
       <section v-if="kids.length > 0">
@@ -37,13 +45,19 @@ export default {
   props: {
     id: Number
   },
+  methods: {
+    toggleHideComment() {
+      this.hidden = !this.hidden;
+    }
+  },
   data () {
     return {
       text: "loading...",
       by: "",
       time:  null,
       kids: [],
-      errored: false
+      errored: false,
+      hidden: false
     }
   },
   mounted () {
