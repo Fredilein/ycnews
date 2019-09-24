@@ -27,7 +27,7 @@
       <section v-if="kids.length > 0">
         <li class="list-group-item comment-item">
           <ul class="listgroup list-group-flush kids">
-            <Comment v-for="id in kids" v-bind:id="id" v-bind:key="id" />
+            <Comment v-for="id in kids" v-bind:id="id" v-bind:level="level+1" v-bind:key="id" />
           </ul>
         </li>
       </section>
@@ -43,7 +43,8 @@ import axios from 'axios';
 export default {
   name: 'Comment',
   props: {
-    id: Number
+    id: Number,
+    level: Number
   },
   methods: {
     toggleHideComment() {
@@ -57,7 +58,7 @@ export default {
       time:  null,
       kids: [],
       errored: false,
-      hidden: false
+      hidden: this.level > 2
     }
   },
   mounted () {

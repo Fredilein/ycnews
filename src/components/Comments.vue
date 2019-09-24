@@ -13,7 +13,7 @@
       <div v-if="loading">Loading...</div>
 
       <ul v-else class="listgroup list-group-flush">
-        <Comment v-for="id in ids" v-bind:id="id" v-bind:key="id"/>
+        <Comment v-for="id in ids" v-bind:id="id" v-bind:level="1" v-bind:key="id"/>
       </ul>
     </section>
 
