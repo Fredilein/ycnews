@@ -7,6 +7,20 @@
       <!-- <Articles /> -->
       <router-view></router-view>
 
+      <span class="theme-footer">
+        <a v-on:click="changeRememberTheme()" data-toggle="tooltip" data-placement="bottom" title="Remember Theme: Always dark, always light or dependent on time">
+          <div v-if="rememberTheme == 'time'">
+            <i class="themeicon far fa-clock"></i>
+          </div>
+          <div v-else-if="rememberTheme == 'light'">
+            <i class="themeicon far fa-lightbulb"></i>
+          </div>
+          <div v-else-if="rememberTheme == 'dark'">
+            <i class="themeicon far fa-moon"></i>
+          </div>
+        </a>
+      </span>
+
       <span class="footer">
         Made with <a v-on:click="store.toggleComments()"><i class="far fa-keyboard fa-lg"></i></a> by <a href="https://github.com/Fredilein" target="_blank">Adi</a>
       </span>
@@ -26,7 +40,8 @@ export default {
   name: 'app',
   data () {
     return {
-      store: store
+      store: store,
+      rememberTheme: null
     }
   },
   components: {
@@ -34,12 +49,32 @@ export default {
     Comments
   },
   mounted () {
-    // Toggle theme (to dark) at night
-    let d =  new Date();
-    let h = d.getHours();
-    if (h < 7 || h > 15) store.toggleTheme();   // light theme 7 - 15 UTC, 9 - 17 in Zurich
+    let r = localStorage.getItem("ycnews-theme")
+    if (r) {
+      this.rememberTheme = r;
+    }
+    else {
+      console.log("not remembering theme on mounted...");
+      this.rememberTheme = "light";
+    }
+  },
+  methods: {
+    changeRememberTheme() {
+      let t = this.rememberTheme;
+      if (t == "time") {
+        localStorage.setItem("ycnews-theme", "light");
+      } else if (t == "light") {
+        localStorage.setItem("ycnews-theme", "dark");
+      } else if (t == "dark") {
+        localStorage.setItem("ycnews-theme", "time");
+      } else {
+        consloe.log("couldnt remember theme...");
+        localStorage.setItem("ycnews-theme", "time");
+      }
+      store.updateTheme();
+      this.rememberTheme = localStorage.getItem("ycnews-theme");
+    }
   }
-
 }
 </script>
 
@@ -68,7 +103,25 @@ h1
   margin-top 30px
   margin-bottom 30px
   text-align center
+  margin-left -23px
   
+  .far
+    margin 8px
+
+  a
+    text-decoration none
+
+
+.theme-footer
+  font-size 0.8em
+  display block
+  margin-top 40px
+  margin-bottom -10px
+  text-align center
+
+  .themeicon
+    margin-left 0px
+
   .far
     margin 8px
 
