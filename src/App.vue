@@ -7,7 +7,7 @@
       <!-- <Articles /> -->
       <router-view></router-view>
 
-      <span class="theme-footer">
+      <span class="footer theme-footer">
         <a v-on:click="changeRememberTheme()" data-toggle="tooltip" data-placement="bottom" title="Remember Theme: Always dark, always light or dependent on time">
           <div v-if="rememberTheme == 'time'">
             <i class="themeicon far fa-clock"></i>
@@ -103,7 +103,7 @@ h1
   margin-top 30px
   margin-bottom 30px
   text-align center
-  margin-left -23px
+  margin-left -30px
   
   .far
     margin 8px
@@ -118,14 +118,10 @@ h1
   margin-top 40px
   margin-bottom -10px
   text-align center
+  margin-left 0px
 
   .themeicon
     margin-left 0px
 
-  .far
-    margin 8px
-
-  a
-    text-decoration none
     
 </style>
