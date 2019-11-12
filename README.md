@@ -1,7 +1,5 @@
 # YC News
 
-[See live](ycnews.tech)
-
 A really simple hackernews clone, built with vue js.
 Toggle between light and dark theme by clicking the Y-icon.
 
