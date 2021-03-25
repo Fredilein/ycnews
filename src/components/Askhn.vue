@@ -1,0 +1,93 @@
+<template>
+  <div>
+
+    <router-link to="/" class="h1 back"><i class="fas fa-chevron-left fa-xs"></i></router-link>
+
+    <h5 class="ctitle">{{ title }}</h5>
+
+    <div class="card">
+      <div class="card-body">
+        <span class="text" v-html="text"></span>
+      </div>
+    </div>
+
+    <section v-if="errored">
+      <p>Couldn't load comments</p>
+    </section>
+
+    <section v-else>
+      <div v-if="loading">Loading...</div>
+
+      <ul v-else class="listgroup list-group-flush">
+        <Comment v-for="id in ids" v-bind:id="id" v-bind:level="1" v-bind:key="id"/>
+      </ul>
+    </section>
+
+
+    <span class="footer">
+      <a :href="ycUrl" target="_blank">Open on ycombinator</a>
+    </span>
+
+  </div>
+</template>
+
+
+
+<script>
+import axios from 'axios';
+import Comment from './Comment.vue';
+
+export default {
+  name: 'Askhn',
+  components: {
+    Comment
+  },
+  data () {
+    return {
+      title: "",
+      ids: null,
+      loading: true,
+      errored: false,
+      ycUrl: ""
+    }
+  },
+  mounted () {
+    this.ycUrl = 'https://news.ycombinator.com/item?id=' + this.$route.params.Aid;
+    axios
+      .get('https://hacker-news.firebaseio.com/v0/item/' + this.$route.params.Aid +'.json')
+      .then(res => {
+        this.ids = res.data.kids
+        this.title = res.data.title
+        this.text = res.data.text
+      })
+      .catch(_ => {
+        // console.log(err)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+  }
+}
+
+</script>
+
+
+
+<style lang="stylus">
+
+@import '../assets/App.styl'
+
+.ctitle
+  padding .75rem 1.25rem
+  text-align center
+
+.back
+  padding-left 1.25rem
+  margin-top -0.15rem
+  position absolute
+  top 60px
+
+.card
+  margin-bottom 20px
+  margin-left 20px
+
+</style>

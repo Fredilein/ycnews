@@ -1,10 +1,16 @@
 <template>
   <li class="list-group-item news-item">
     <span class="score">{{ score }}</span>
-    <span class="title">
-      <a :href="url" target="_blank" rel="noopener">{{ title }}</a>
-    </span>
-    <br>
+    <div v-if="type == 'ask'">
+      <span class="title">
+        <a v-on:click="goToAsk(id)" href="#">{{ title }}</a>
+      </span>
+    </div>
+    <div v-else>
+      <span class="title">
+        <a :href="url" target="_blank" rel="noopener">{{ title }}</a>
+      </span>
+    </div>
     <span class="meta">
       <div v-if="url">
         <div v-if="!store.state.showComments">
@@ -42,6 +48,9 @@ export default {
   methods: {
     goToComments(id) {
       this.$router.push({name: 'comments', params: {Aid:id}})
+    },
+    goToAsk(id) {
+      this.$router.push({name: 'ask', params: {Aid:id}})
     }
   },
   data () {
@@ -50,6 +59,7 @@ export default {
       title: "loading...",
       url:   "",
       time:  null,
+      type:  "",
       ncomments: 0,
       store: store
     }
@@ -66,6 +76,16 @@ export default {
         this.url   = res.data.url;
         this.time  = res.data.time;
         this.ncomments = res.data.kids.length;
+        this.type = res.data.type;
+
+        if (res.data.hasOwnProperty('text') && !res.data.hasOwnProperty('url')) {
+          // Is probably AskHN thread
+          console.log('askhn');
+          this.type = 'ask';
+          // this.url = '/ask/' + this.id;
+          this.url = 'wikipedia.org';
+        }
+
       })
       .catch(err => {
         console.log(err)
