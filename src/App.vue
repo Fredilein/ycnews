@@ -86,7 +86,6 @@ export default {
 
 .app 
   font-family 'Nunito', sans-serif
-  font-family 'Roboto Mono', monospace
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   padding-top 60px
