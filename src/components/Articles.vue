@@ -21,7 +21,7 @@ import axios from 'axios';
 import Article from './Article.vue';
 
 
-const NUM_ARTICLES = 40;
+const NUM_ARTICLES = 30;
 
 
 export default {
